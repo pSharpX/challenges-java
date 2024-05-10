@@ -313,4 +313,8 @@ public class Main {
         return String.format("%dh %dm %ds %dml", hour, min, sec, ml);
     }
 
+    public static String longest (String s1, String s2) {
+        return Stream.concat(s1.chars().boxed(), s2.chars().boxed()).distinct().sorted().map(Character::toString).collect(Collectors.joining());
+    }
+
 }

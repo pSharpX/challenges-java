@@ -2,6 +2,7 @@ package com.challenger.common;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -315,6 +316,33 @@ public class Main {
 
     public static String longest (String s1, String s2) {
         return Stream.concat(s1.chars().boxed(), s2.chars().boxed()).distinct().sorted().map(Character::toString).collect(Collectors.joining());
+    }
+
+    public static int findShort(String s) {
+        return Arrays.stream(s.split(" ")).min(Comparator.comparingInt(String::length)).map(String::length).orElse(0);
+    }
+
+    public static int findShort2(String s) {
+        String[] words = s.split(" ");
+        String shortest = words[0];
+        for (int i = 1; i < words.length - 1; i++) {
+            if (shortest.length() > words[i + 1].length()) {
+                shortest = words[i + 1];
+            }
+        }
+        return shortest.length();
+    }
+
+    public static int findShort3(String s) {
+        return Arrays.stream(s.split(" ")).mapToInt(String::length).sorted().findFirst().orElse(0);
+    }
+
+    public static int century(int number) {
+        return (number % 100 == 0) ? number / 100: (number / 100) + 1;
+    }
+
+    public static int century2(int number) {
+        return (int) Math.ceil((double)number / 100);
     }
 
 }

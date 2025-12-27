@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 import java.util.SortedSet;
@@ -19,6 +20,11 @@ import java.util.stream.Stream;
 public class Main {
 
     public static void main(String[] args) {
+        String mostRepeated = mostRepeatedWord("home home calor calor playa perro gato calor");
+        System.out.println(mostRepeated);
+    }
+
+    public static void printBubbleSort() {
         Random random = new Random();
         int[] numbs = new int[1000000];
         for (int i = 0; i < numbs.length; i++) {
@@ -343,6 +349,27 @@ public class Main {
 
     public static int century2(int number) {
         return (int) Math.ceil((double)number / 100);
+    }
+
+    public static String mostRepeatedWord(String str){
+        if (str == null || str.isBlank()) {
+            return null;
+        }
+        String[] words = str.split(" ");
+        if (words.length <= 2) {
+            return words[0];
+        }
+
+        Map<String, Integer> wordsMap = new HashMap<>();
+        String most = words[0];
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            wordsMap.put(word, Optional.ofNullable(wordsMap.get(word)).orElse(0) + 1);
+            if (most != word && Optional.ofNullable(wordsMap.get(most)).orElse(0) < Optional.ofNullable(wordsMap.get(word)).orElse(0)) {
+                most = word;
+            }
+        }
+        return most;
     }
 
 }

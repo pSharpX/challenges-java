@@ -163,6 +163,9 @@ dist
 .history
 .ionide
 
+### Maven ###
+target/
+
 ### Gradle ###
 .gradle
 build/
@@ -570,3 +573,4 @@ sonarqube-pr-build
 # End of https://www.toptal.com/developers/gitignore/api/java,node,visualstudiocode,visualstudio,gradle
 
 src/main/resources/application-local.yml
+
